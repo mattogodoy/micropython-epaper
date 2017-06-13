@@ -7,6 +7,8 @@ It has no brand or marking other than a website that is not even online: www.san
 
 ![STM32](SanmuChina.jpg)
 
+I bought the board at AliExpress:
+https://www.aliexpress.com/item/STM32-STM32F405RGT6-Core-Board-For-MicroPython-Development-Board-for-Circuit-Pyboard-Python-Module-STM32F405-with-Full/32805371346.html
 
 ## Pin Mapping
 In order to make it work, I had to remap all of the GPIOs' names so they match the ones of the original PyBoard.
@@ -31,8 +33,6 @@ The connection scheme for this board is:
 
 This mapping happens in the file **pin_mapping.py**, which is now included when you load **epaper.py**
 
-It works!
-
 ![STM32](STM32_test.jpg)
 
 Both the NORMAL and FAST modes work ok.
@@ -44,7 +44,12 @@ Both the NORMAL and FAST modes work ok.
 ```import test_normal ``` or ```import test_fast ``` via the REPL. If everything is ok, you should see some sample text on the display.
 
 # =====================================
-From this point the rest of the document is the original readme and has not been modified. I recommend you to read it carefully because it's very well written.
+From this point, the rest of the document is the original readme file and has not been modified. I recommend you to read it carefully because it's very well written and explanatory.
+
+Hats off to **peterhinch**, the original autor of the driver for sharing his effort. I can figure this must have been hard work. Thank you!
+
+> Matto
+
 # =====================================
 # V  V  V  V  V  V  V  V  V  V  V  V  V
 
