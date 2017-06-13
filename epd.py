@@ -89,7 +89,7 @@ class EPD(object):
         self.Pin_FLASH_CS.high()
         self.spi_no = pins['SPI_BUS']
         if model == EMBEDDED_ARTISTS:
-            self.lm75 = LM75(pins['I2C_BUS'])   # early error if not working
+            self.lm75 = LM75(1)   # early error if not working
         else:
             self.adc = pyb.ADC(pins['TEMPERATURE'])
 
@@ -122,7 +122,7 @@ class EPD(object):
         self.Pin_BORDER.low()
         self.Pin_EPD_CS.low()
                                                 # Baud rate: data sheet says 20MHz max. Pyboard's closest (21MHz) was unreliable
-        self.spi = pyb.SPI(self.spi_no, pyb.SPI.MASTER, baudrate=10500000, polarity=1, phase=1, bits=8) # 5250000 10500000 supported by Pyboard
+        self.spi = pyb.SPI(2, pyb.SPI.MASTER, baudrate=10500000, polarity=1, phase=1, bits=8) # 5250000 10500000 supported by Pyboard
         self._SPI_send(b'\x00\x00')
         pyb.delay(5)
         self.Pin_PANEL_ON.high()

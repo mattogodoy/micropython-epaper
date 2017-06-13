@@ -21,7 +21,7 @@
 
 # Code translated and developed from https://developer.mbed.org/users/dreschpe/code/EaEpaper/
 
-import pyb, os, gc
+import pyb, os, gc, pin_mapping
 from panel import NORMAL, FAST, EMBEDDED_ARTISTS, ADAFRUIT
 LINES_PER_DISPLAY = const(176)  # 2.7 inch panel only!
 BYTES_PER_LINE = const(33)

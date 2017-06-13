@@ -1,5 +1,53 @@
 # micropython-epaper
 
+# Fork notes
+
+This is a fork to make this library run on a STM32 based board.
+It has no brand or marking other than a website that is not even online: www.sanmuchina.com
+
+![STM32](SanmuChina.jpg)
+
+
+## Pin Mapping
+In order to make it work, I had to remap all of the GPIOs' names so they match the ones of the original PyBoard.
+The connection scheme for this board is:
+
+| display | signal     | STM32      | Python name   |
+|:-------:|:----------:|:----------:|:-------------:|
+|  1      | GND        | GND        |               |
+|  2      | 3V3        | 3V3        |               |
+|  3      | SCK        | PB13       | (SPI bus)     |
+|  4      | MOSI       | PB15       |               |
+|  5      | MISO       | PB14       |               |
+|  6      | SSEL       | PB12       | Pin_EPD_CS    |
+|  7      | Busy       | PC4        | Pin_BUSY      |
+|  8      | Border Ctl | PC15       | Pin_BORDER    |
+|  9      | SCL        | PB6        | (I2C bus)     |
+| 10      | SDA        | PB7        |               |
+| 11      | CS Flash   | PC6        | Pin_FLASH_CS  |
+| 12      | Reset      | PC7        | Pin_RESET     |
+| 13      | Pwr        | PC8        | Pin_PANEL_ON  |
+| 14      | Discharge  | PC9        | Pin_DISCHARGE |
+
+This mapping happens in the file **pin_mapping.py**, which is now included when you load **epaper.py**
+
+It works!
+
+![STM32](STM32_test.jpg)
+
+Both the NORMAL and FAST modes work ok.
+
+## Other changes
+
+* I had to manually set the SPI and I2C bus numbers in the code in order to make it work. For some reason, changing the values in **panel.py** was not enough.
+* I have added a **test_normal.py** and a **test_fast.py** files, so you can copy them to your board and execute them using:
+```import test_normal ``` or ```import test_fast ``` via the REPL. If everything is ok, you should see some sample text on the display.
+
+# =====================================
+From this point the rest of the document is the original readme and has not been modified. I recommend you to read it carefully because it's very well written.
+# =====================================
+# V  V  V  V  V  V  V  V  V  V  V  V  V
+
 A driver to enable the Pyboard to access a 2.7 inch e-paper display from
 [Embedded Artists](http://www.embeddedartists.com/products/displays/lcd_27_epaper.php)
 This can also be bought from Mouser Electronics (a company with worldwide depots) e.g.

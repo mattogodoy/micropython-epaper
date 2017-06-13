@@ -55,7 +55,7 @@ LM75_CONF_REGISTER  = const(1)
 
 class LM75():
     def __init__(self, bus):                    # Check existence and wake it
-        self._i2c = pyb.I2C(bus, pyb.I2C.MASTER)
+        self._i2c = pyb.I2C(1, pyb.I2C.MASTER)
         devices = self._i2c.scan()
         if not LM75_ADDR in devices:
             raise OSError("No LM75 device detected")
@@ -127,7 +127,7 @@ class EPD(object):
         self.Pin_FLASH_CS.high()
         self.spi_no = pins['SPI_BUS']
         if model == EMBEDDED_ARTISTS:
-            self.lm75 = LM75(pins['I2C_BUS'])   # early error if not working
+            self.lm75 = LM75(1)   # early error if not working
         else:
             self.adc = pyb.ADC(pins['TEMPERATURE'])
 
